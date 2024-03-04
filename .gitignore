@@ -1,1 +1,4 @@
 .venv
+.test.py
+response = requests.patch(BASE + "wiki/5", {"subject": "new"})
+print(response.json())
