@@ -1,20 +1,24 @@
 from flask import Flask
 from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
 from flask_sqlalchemy import SQLAlchemy
+import config
 
 app = Flask(__name__)
 api = Api(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_CONNECTION_URI
+
 db = SQLAlchemy(app)
 
-
 class WikiModel(db.Model):
+    __tablename__="wiki_model"
     id = db.Column(db.Integer, primary_key=True)
     subject = db.Column(db.String(50), nullable=False)
     views = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         return f"Article(name = {name}, views = {views})"
+
+db.create_all()
 
 article_put_args = reqparse.RequestParser()
 article_put_args.add_argument(
