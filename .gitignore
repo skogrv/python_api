@@ -1,5 +1,8 @@
-.venv
-.test.py
+api
+test.py
 Dockerfile
 api
+compose.yaml
+docker-entrypoint.sh
 database.db
+wait-for-it.sh

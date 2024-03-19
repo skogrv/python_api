@@ -6,6 +6,8 @@ import config
 app = Flask(__name__)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_CONNECTION_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+print(app.config['SQLALCHEMY_DATABASE_URI'] )
 
 db = SQLAlchemy(app)
 
@@ -17,8 +19,6 @@ class WikiModel(db.Model):
 
     def __repr__(self):
         return f"Article(name = {name}, views = {views})"
-
-db.create_all()
 
 article_put_args = reqparse.RequestParser()
 article_put_args.add_argument(
@@ -69,9 +69,15 @@ class Wiki(Resource):
     def delete(self, article_id):
         return '', 204
 
+def init_db():
+    with app.app_context():
+        db.create_all()
+        print("Database tables created successfully.")
+
+init_db()
 
 api.add_resource(Wiki, "/wiki/<int:article_id>")
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
