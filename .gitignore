@@ -1,8 +1,6 @@
-api
-test.py
-Dockerfile
-api
-compose.yaml
-docker-entrypoint.sh
-database.db
-wait-for-it.sh
+./python_api/test.py
+./python_api/Dockerfile
+./python_api/api
+./python_api/compose.yaml
+./python_api/database.db
+./python_api/__pycache__/
