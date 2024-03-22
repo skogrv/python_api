@@ -1,7 +1,7 @@
 FROM python:3.12.2-alpine3.19
 WORKDIR /app
-# RUN addgroup -g 1000 dbuser && \ 
-#     adduser -u 1000 -G dbuser -D dbuser
+RUN addgroup -g 1000 api && \ 
+    adduser -u 1000 -G api -D dbuser
 COPY requirements.txt .
 RUN apk update
 RUN apk add postgresql-dev gcc python3-dev musl-dev libpq-dev
