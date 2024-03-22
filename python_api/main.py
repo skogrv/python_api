@@ -7,7 +7,6 @@ app = Flask(__name__)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_CONNECTION_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-print(app.config['SQLALCHEMY_DATABASE_URI'] )
 
 db = SQLAlchemy(app)
 
