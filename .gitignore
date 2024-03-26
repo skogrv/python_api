@@ -1,7 +1,6 @@
 /python_api/test.py
-/python_api/api
 /python_api/compose.yaml
 /python_api/database.db
 /python_api/api
-/python_api/.env_list
 /python_api/__pycache__/
+.env
